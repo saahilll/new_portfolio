@@ -129,40 +129,42 @@ const Home: React.FC = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-        >
-          <span className="text-text-secondary text-sm font-medium tracking-wide">
-            Scroll to explore
-          </span>
-          <motion.div
-            animate={{
-              y: [0, 8, 0]
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="text-primary"
+        <div className="absolute bottom-8 md:bottom-12 left-0 right-0 flex justify-center items-center z-10">
+          <motion.div 
+            className="flex flex-col items-center space-y-2 px-4"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
           >
-            <svg 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
+            <span className="text-text-secondary text-sm font-medium tracking-wide whitespace-nowrap">
+              Scroll to explore
+            </span>
+            <motion.div
+              animate={{
+                y: [0, 8, 0]
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="text-primary"
             >
-              <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
+              <svg 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+              </svg>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Projects Section */}
