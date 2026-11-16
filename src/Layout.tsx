@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Home, Grid, User } from 'react-feather';
+import React, { useState, useEffect, useRef } from 'react';
+import { Home, Grid, Mail } from 'react-feather';
 
 const NavLink = ({ href, icon, label, isActive }: { href: string; icon: React.ReactNode; label: string; isActive: boolean }) => {
   const handleClick = (e: React.MouseEvent) => {
@@ -19,7 +19,8 @@ const NavLink = ({ href, icon, label, isActive }: { href: string; icon: React.Re
     <a
       href={href}
       onClick={handleClick}
-      className={`relative p-2 group transition-all duration-300 ${
+      aria-label={label}
+      className={`relative p-3 lg:p-2 group transition-all duration-300 ${
         isActive ? 'text-primary' : 'text-text-secondary hover:text-accent'
       }`}
       title={label}
@@ -41,7 +42,7 @@ const NavLink = ({ href, icon, label, isActive }: { href: string; icon: React.Re
         </span>
 
         {/* Tooltip */}
-        <div className="absolute right-full top-1/2 -translate-y-1/2 mr-3 px-2 py-1 rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-surface-dark/90 backdrop-blur-sm border border-primary/10">
+        <div className="hidden lg:block absolute right-full top-1/2 -translate-y-1/2 mr-3 px-2 py-1 rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-surface-dark/90 backdrop-blur-sm border border-primary/10">
           <span className="text-sm font-medium whitespace-nowrap text-text-primary">{label}</span>
           <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-2 h-2 bg-surface-dark/90 rotate-45 border-t border-r border-primary/10"></div>
         </div>
@@ -52,6 +53,18 @@ const NavLink = ({ href, icon, label, isActive }: { href: string; icon: React.Re
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [activeSection, setActiveSection] = useState('home');
+  const glow = useRef<HTMLDivElement>(null);
+
+  // Red glow that follows the mouse (not touch).
+  useEffect(() => {
+    const move = (e: PointerEvent) => {
+      if (!glow.current || e.pointerType !== 'mouse') return;
+      glow.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      glow.current.style.opacity = '1';
+    };
+    window.addEventListener('pointermove', move);
+    return () => window.removeEventListener('pointermove', move);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,15 +130,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="min-h-screen bg-background-dark">
-      <nav 
-        className="fixed right-4 top-1/2 -translate-y-1/2 z-50 rounded-full border border-primary/10 bg-surface-dark/80 backdrop-blur-md"
+      <div aria-hidden="true" className="crt" />
+      <div aria-hidden="true" ref={glow} className="cursor-glow" />
+      <nav
+        aria-label="Sections"
+        className="fixed z-50 rounded-full border border-primary/10 bg-surface-dark/80 backdrop-blur-md bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 lg:bottom-auto lg:left-auto lg:translate-x-0 lg:right-4 lg:top-1/2 lg:-translate-y-1/2"
       >
         <div className="relative p-1.5">
           {/* Subtle inner glow */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/5 to-accent/5"></div>
           
           {/* Navigation items */}
-          <div className="relative flex flex-col items-center space-y-1">
+          <div className="relative flex items-center gap-1 lg:flex-col">
             <NavLink 
               href="#hero" 
               icon={<Home size={18} />}
@@ -140,8 +156,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             />
             <NavLink 
               href="#about" 
-              icon={<User size={18} />}
-              label="About"
+              icon={<Mail size={18} />}
+              label="Contact"
               isActive={activeSection === 'about'}
             />
           </div>

@@ -1,0 +1,26 @@
+# Saahil Pandya
+
+> Saahil Pandya is a product engineer in Ahmedabad, India, who takes AI products from spec to shipped code. He is a product manager at Motadata, leading AI across ServiceOps, an enterprise ITSM and IT asset management platform. He is open to conversations about product engineering and AI engineering roles.
+
+He defines the problem, writes the requirements, and builds the systems behind them, so trade-offs on cost, reliability, and model quality are decided by someone who understands both sides.
+
+## Projects
+
+- [AI Studio](https://www.motadata.com/capabilities/ai-workforce): ServiceOps' agentic AI suite, in production at Motadata. IT teams deploy pre-built AI agents and manager-orchestrated AI teams with no code. Agents are grounded on each customer's knowledge base through RAG, with PII masking on input and output and a test-and-preview step before go-live. Documentation: https://docs.motadata.com/serviceops-docs/admin-section/ai/ai-studio/
+- [Prism](https://github.com/saahilll/Prism): An OpenAI-compatible LLM gateway that puts one endpoint in front of multiple model providers. Per-team budgets and rate limits, failover across providers, difficulty-based routing to cheaper models, and a semantic cache. Python, PostgreSQL, pgvector, Redis, React, Docker.
+- [Prolifo](https://github.com/saahilll/prolifo): A hybrid RAG engine that ranks candidates against job descriptions and explains every result. Semantic search (ChromaDB) and keyword search (BM25) combined with Reciprocal Rank Fusion, must-have requirements enforced before scoring, and a 0 to 100 score with a plain-language reason.
+- [Vero](https://github.com/saahilll/vero): A real-time chat application with personal and group messaging, file sharing, and live presence. Python, Django Channels, HTMX, Redis.
+- [Little Garden](https://github.com/saahilll/little_garden): An e-commerce application with a product catalog, category filtering, a session-aware cart, and an order workflow. Python, Django.
+
+## Strengths
+
+- End-to-end ownership: from problem discovery and PRDs to architecture, implementation, tests, and launch.
+- Applied AI engineering: agentic systems, RAG, LLM gateways, and evaluation against baselines.
+- Production judgement: designs for cost control, failover, governance, and data privacy from day one.
+
+## Contact
+
+- [Email](mailto:saahilpandya@gmail.com)
+- [GitHub](https://github.com/saahilll)
+- [LinkedIn](https://www.linkedin.com/in/saahill/)
+- [X](https://x.com/SaahilPandya)
