@@ -1,0 +1,7 @@
+# agents.txt for www.saahilpandya.com
+# There is no adopted agents.txt standard; robots.txt is authoritative for crawling.
+
+Allow: /
+Summary: https://www.saahilpandya.com/llms.txt
+Sitemap: https://www.saahilpandya.com/sitemap.xml
+Contact: mailto:saahilpandya@gmail.com
